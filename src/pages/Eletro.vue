@@ -63,12 +63,12 @@
               <label for="formName" class="form-label">Marca</label>
               <select class="form-control" ref="Marca">
                 <option value="1" selected>Selecione uma Marca</option>
-                <option v-for="MarcaNome in MarcaNome" :key="MarcaNome.Id" :value="MarcaNome.Id">{{ MarcaNome.Marca }}</option>
+                <option v-for="MarcaNome in MarcaNome" :key="MarcaNome.marca_Id" :value="MarcaNome.marca_Id">{{ MarcaNome.Marca }}</option>
               </select>
               <label for="formName" class="form-label">Tensão</label>
               <select class="form-control" ref="Tensao">
                 <option value="1" selected>Selecione uma Tensão</option>
-                <option v-for="TensaoNome in TensaoNome" :key="TensaoNome.Id" :value="TensaoNome.Id">{{ TensaoNome.Tensao }}</option>
+                <option v-for="TensaoNome in TensaoNome" :key="TensaoNome.tensao_Id" :value="TensaoNome.tensao_Id">{{ TensaoNome.Tensao }}</option>
               </select>
               <div class="mb-3">
                 <v-btn
@@ -164,12 +164,12 @@
               <label for="formName" class="form-label">Marca</label>
               <select class="form-control" ref="Marca">
                 <option value="1" selected>Selecione uma marca</option>
-                <option v-for="MarcaNome in MarcaNome" :key="MarcaNome.Id" :value="MarcaNome.Id">{{ MarcaNome.Marca }}</option>
+                <option v-for="MarcaNome in MarcaNome" :key="MarcaNome.marca_Id" :value="MarcaNome.marca_Id">{{ MarcaNome.Marca }}</option>
               </select>
               <label for="formName" class="form-label">Tensão</label>
               <select class="form-control" ref="Tensao">
                 <option value="1" selected>Selecione uma Tensão</option>
-                <option v-for="TensaoNome in TensaoNome" :key="TensaoNome.Id" :value="TensaoNome.Id">{{ TensaoNome.Tensao }}</option>
+                <option v-for="TensaoNome in TensaoNome" :key="TensaoNome.tensao_Id" :value="TensaoNome.tensao_Id">{{ TensaoNome.Tensao }}</option>
               </select>
               <div class="mb-3">
                 <button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
@@ -200,7 +200,6 @@
           tensao: this.Tensao,
           criarNome: this.criarNome,
           criarDescricao: this.criarDescricao,
-          criarNivel: this.criarNivel,
           dialog: false,
           dialogDelete: false,
           dialogRelatorio: false,
@@ -211,11 +210,7 @@
           errors: [],
           show:false,
           headers: [
-            {
-              text: 'Id',
-              align: 'start',
-              value: 'Id',
-            },
+            
             { text: 'Nome', value: 'Nome' },
             { text: 'Descrição', value: 'Descricao' },
             { text: 'Marca', value: 'Marca' },
@@ -295,8 +290,7 @@
         this.descricao = item.Descricao
         this.marca = item.Marca
         this.tensao = item.Tensao
-        
-          this.dialog = true
+        this.dialog = true
         },
   
         
@@ -367,10 +361,13 @@
                      axios.get("/eletro")
                           .then(response => {
                             this.Eletro = response.data;
+                            
                           })
                           .catch(error => {
                             this.Eletro = error.data;
+                            
                           });
+                          
                     this.loadTable= false;
               },
     }

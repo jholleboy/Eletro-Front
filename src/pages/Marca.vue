@@ -180,11 +180,7 @@
           errors: [],
           show:false,
           headers: [
-            {
-              text: 'Id',
-              align: 'start',
-              value: 'Id',
-            },
+           
             
             { text: 'Nome', value: 'Marca' },
             
@@ -254,7 +250,7 @@
         editItem (item) {
           this.editedIndex = this.getMarca.indexOf(item)
           this.editedItem = Object.assign({}, item)
-        this.id = item.Id
+        this.id = item.marca_Id
         this.Marca = item.Marca
         
           this.dialog = true
@@ -270,7 +266,7 @@
   
         deleteItemConfirm (item) {
           
-          const id = item.Id
+          const id = item.marca_Id
           axios.delete("/marca/"+id)
                           .then((res) => {
                             alert("Marca Removida!");

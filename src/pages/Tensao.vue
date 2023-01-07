@@ -180,11 +180,7 @@
           errors: [],
           show:false,
           headers: [
-            {
-              text: 'Id',
-              align: 'start',
-              value: 'Id',
-            },
+        
             
             { text: 'Nome', value: 'Tensao' },
             
@@ -254,7 +250,7 @@
         editItem (item) {
           this.editedIndex = this.getTensao.indexOf(item)
           this.editedItem = Object.assign({}, item)
-        this.id = item.Id
+        this.id = item.tensao_Id
         this.Tensao = item.Tensao
         
           this.dialog = true
@@ -270,7 +266,7 @@
   
         deleteItemConfirm (item) {
           
-          const id = item.Id
+          const id = item.tensao_Id
           axios.delete("/tensao/"+id)
                           .then((res) => {
                             alert("Tensao Removida!");
