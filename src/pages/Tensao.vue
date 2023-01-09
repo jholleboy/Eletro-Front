@@ -220,6 +220,7 @@
                 })
           
           alert("Tensao Criada!");
+          this.$router.go(0);
           } catch (error) {
                 
                 alert("Erro!");
@@ -238,6 +239,7 @@
                   
                 })
           alert("Tensao Atualizado!");
+          this.$router.go(0);
           } catch (error) {
                 
                 alert("Erro!");
@@ -269,6 +271,7 @@
           axios.delete("/tensao/"+id)
                           .then((res) => {
                             alert("Tensao Removida!");
+                            this.$router.go(0);
                           })
                           .catch((error) => {
                             alert("Erro!");

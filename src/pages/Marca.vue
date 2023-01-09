@@ -219,6 +219,7 @@
                 })
           
           alert("Marca Criada!");
+          this.$router.go(0);
           } catch (error) {
                 
                 alert("Erro!");
@@ -236,6 +237,7 @@
                   
                 })
           alert("Marca Atualizado!");
+          this.$router.go(0);
           } catch (error) {
                 
                 alert("Erro!");
@@ -267,6 +269,7 @@
           axios.delete("/marca/"+id)
                           .then((res) => {
                             alert("Marca Removida!");
+                            this.$router.go(0);
                           })
                           .catch((error) => {
                             alert("Erro!");

@@ -253,6 +253,7 @@
                 })
           
           alert("Eletro Criado!");
+          this.$router.go(0);
           } catch (error) {
                 
                 alert("Erro!");
@@ -271,6 +272,7 @@
                   "Tensao": this.$refs['Tensao'].value,
                 })
           alert("Eletro Atualizado!");
+          this.$router.go(0);
           } catch (error) {
                 
                 alert("Erro!");
@@ -304,6 +306,7 @@
           axios.delete("/eletro/"+id)
                           .then((res) => {
                             alert("Eletro Removido!");
+                            this.$router.go(0);
                           })
                           .catch((error) => {
                             alert("Erro!");
