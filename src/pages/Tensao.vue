@@ -122,7 +122,7 @@
     <div
         ref="modal"
         class="modal fade"
-        :class="[{'show d-block': show}, {'d-none': !show}, {'modal-mini': type === 'mini'}]"
+        :class="[{'show d-block': show}, {'d-none': !show}]"
         tabindex="-1"
         role="dialog"
       >
@@ -145,7 +145,7 @@
               <form v-on:submit.prevent="cadastroTensao">
               <div class="mb-3">
                 <label for="formName" class="form-label">Nome</label>
-                <input class="form-control" type="text" v-model="Tensao" id="tensao">
+                <input class="form-control" type="text" v-model="criarNome" id="criarNome">
               </div>
       
               <div class="mb-3">
@@ -171,7 +171,7 @@
           loadTable: true,
           id: this.id,
           Tensao: this.Tensao,
-          criarTensao: this.criarTensao,
+          criarNome: this.criarNome,
           dialog: false,
           dialogDelete: false,
           dialogRelatorio: false,
@@ -209,25 +209,24 @@
           criarTensao() {
               setTimeout(() => (this.show = !this.show), 10);
           },
-          cadastroTensao(){
+          async cadastroTensao(){
                   this.criarTensao()
-                  axios.post("/tensao", ({
-                    
-                    Tensao: this.Tensao,
-                    
-                  }))
-                      .then((res) => {
-                          res.send("Cadastro com sucesso!")
-                          this.criarTensao()
-                          this.dialog = false
-                      })
-                      .catch((error) => {
-                          this.criarTensao()
-                          this.dialog = false
-                      }).finally(() => {
-                          this.criarTensao()
-                          this.dialog = false
-                      });
+                  
+                  try{
+                   await axios.post("/tensao/", {
+                  
+                  "Tensao": this.criarNome,
+                  
+                })
+          
+          alert("Tensao Criada!");
+          } catch (error) {
+                
+                alert("Erro!");
+          }
+          this.dialog = false
+                  
+                 
               },
               async atualizarTensao(){
                 const id = this.id

@@ -240,27 +240,24 @@
           criarEletro() {
               setTimeout(() => (this.show = !this.show), 10);
           },
-          cadastroEletro(){
+         async cadastroEletro(){
                   this.criarEletro()
-                  axios.post("/eletro", ({
+                  try{
+                   await axios.post("/eletro/", {
+                  
                     Nome: this.criarNome,
                     Descricao: this.criarDescricao,
                     Marca: this.$refs['Marca'].value,
                     Tensao: this.$refs['Tensao'].value,
-                    
-                  }))
-                      .then((res) => {
-                          res.send("Cadastro com sucesso!")
-                          this.criarEletro()
-                          this.dialog = false
-                      })
-                      .catch((error) => {
-                          this.criarEletro()
-                          this.dialog = false
-                      }).finally(() => {
-                          this.criarEletro()
-                          this.dialog = false
-                      });
+                  
+                })
+          
+          alert("Eletro Criado!");
+          } catch (error) {
+                
+                alert("Erro!");
+          }
+          this.dialog = false
               },
               async atualizarEletro(){
                 const id = this.id

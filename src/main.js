@@ -12,7 +12,7 @@ import axios from "axios";
 
 //Vue.use(BootstrapVue);
 Vue.prototype.$http = axios
-axios.defaults.baseURL = 'Sua URL/api';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
 

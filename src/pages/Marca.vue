@@ -122,7 +122,7 @@
     <div
         ref="modal"
         class="modal fade"
-        :class="[{'show d-block': show}, {'d-none': !show}, {'modal-mini': type === 'mini'}]"
+        :class="[{'show d-block': show}, {'d-none': !show}]"
         tabindex="-1"
         role="dialog"
       >
@@ -145,7 +145,7 @@
               <form v-on:submit.prevent="cadastroMarca">
               <div class="mb-3">
                 <label for="formName" class="form-label">Nome</label>
-                <input class="form-control" type="text" v-model="Marca" id="marca">
+                <input class="form-control" type="text" v-model="criarNome" id="criarNome">
               </div>
       
               <div class="mb-3">
@@ -171,7 +171,7 @@
           loadTable: true,
           id: this.id,
           Marca: this.Marca,
-          criarMarca: this.criarMarca,
+          criarNome: this.criarNome,
           dialog: false,
           dialogDelete: false,
           dialogRelatorio: false,
@@ -209,25 +209,22 @@
           criarMarca() {
               setTimeout(() => (this.show = !this.show), 10);
           },
-          cadastroMarca(){
+          async cadastroMarca(){
                   this.criarMarca()
-                  axios.post("/marca", ({
-                    
-                    Marca: this.Marca,
-                    
-                  }))
-                      .then((res) => {
-                          res.send("Cadastro com sucesso!")
-                          this.criarMarca()
-                          this.dialog = false
-                      })
-                      .catch((error) => {
-                          this.criarMarca()
-                          this.dialog = false
-                      }).finally(() => {
-                          this.criarMarca()
-                          this.dialog = false
-                      });
+                  try{
+                   await axios.post("/marca/", {
+                  
+                  "Marca": this.criarNome,
+                  
+                })
+          
+          alert("Marca Criada!");
+          } catch (error) {
+                
+                alert("Erro!");
+          }
+          this.dialog = false
+                  
               },
               async atualizarMarca(){
                 const id = this.id
